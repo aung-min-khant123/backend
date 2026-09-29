@@ -1,17 +1,18 @@
+require("dotenv").config();
 const mysql = require("mysql2");
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  // host: "mysql.railway.internal",
+  // host: "localhost",
   // user: "root",
-  // password: "eUUIAsHmkjBOxQppveeOXzbVCYhCzcEu",
-  // port: 3306,
-  // database: "railway",
+  // password: "",
+   host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: Number(process.env.MYSQLPORT),
 });
 
-// 7
+
 db.query("CREATE DATABASE IF NOT EXISTS ecommerce", (err) => {
   if (err) {
     console.error("Error creating database:", err);
